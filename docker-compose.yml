@@ -1,0 +1,26 @@
+version: '3.1'
+
+services:
+  db_volume:
+    image: busybox
+    volumes:
+      - db_volume:/var/lib/mysql
+    tty: true
+  db:
+    image: mysql:5.7
+    command: >
+      --character-set-server=utf8mb4
+      --collation-server=utf8mb4_unicode_ci
+    environment:
+      - MYSQL_DATABASE=youtube
+      - MYSQL_ROOT_PASSWORD=pass
+      - MYSQL_USER=default
+      - MYSQL_PASSWORD=password
+      - TZ=Asia/Tokyo
+    ports:
+      - "4306:3306"
+    volumes:
+      - db_volume:/var/lib/mysql
+
+volumes:
+  db_volume:
