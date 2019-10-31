@@ -1,11 +1,6 @@
 version: '3.1'
 
 services:
-  db_volume:
-    image: busybox
-    volumes:
-      - db_volume:/var/lib/mysql
-    tty: true
   db:
     image: mysql:5.7
     command: >
@@ -20,7 +15,7 @@ services:
     ports:
       - "4306:3306"
     volumes:
-      - db_volume:/var/lib/mysql
+      - dbdata:/var/lib/mysql
 
 volumes:
-  db_volume:
+  dbdata:
